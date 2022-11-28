@@ -1,26 +1,28 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.25 <0.9.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract TrankersToken is ERC20, Ownable {
+contract TrankersToken is ERC20,Ownable{
+    constructor() ERC20("TrankersToken", "TRT"){
+        _mint(msg.sender,1000);
+    }
 
-    constructor() ERC20("TrankersToken", "TRT") {
-        _mint(msg.sender, 20000);
+    function mint(address to,uint amount)onlyOwner public{
+     require(amount >= 0,"put some amount");
+     require(to != address(0),"address is zero");
+     _mint(to,amount);
+    }
+
+    function burn(address from,uint amount)public{
+     require(amount > 0,"put some amount");
+      require(from != address(0),"address is zero");
+     _burn(from,amount);   
     }
 
     function decimals() public view virtual override returns (uint8) {
-        return 0;
-    }
-
-    function mint(address to_, uint256 amount) public onlyOwner {
-        require(to_ != address(0), "to address is invalid");
-        require(amount > 0, "amount is invalid");
-        _mint(to_, amount);
-    }
-
-    function burnFrom(address account, uint256 amount) public virtual {
-        _burn(account, amount);
-    }
+    return 0;
 }
+
+    }
