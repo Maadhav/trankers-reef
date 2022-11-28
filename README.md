@@ -1,10 +1,10 @@
 # Trankers
 
-> Trankers is a tank based community-led online "play-and-earn" gaming platform created by CodeDecoders.
+> Trankers is a tank based community-led online "play-and-earn" gaming platform.
 
 > Shoot turrets and enemy tanks to increase your score. The more you score the more tokens you will earn.
 > With your earned TRT tokens, upgrade your tanks, buy new tanks and buy extra accessories for your tanks.
-> The smart contracts are deployed on the Trust EVM Blockchain
+> The smart contracts are deployed on the Reef Blockchain
 
  
 ## Features
@@ -14,34 +14,35 @@
 - In Game Token management
 - Simple and fun to play Game
 - Multi-Ownership of NFTs
-- Deployed on Trust EVM Blockchain
+- Deployed on Reef Blockchain
 - Sort the upgrades based on their popularity, strengths and price
 
 ## Deployed Smart Contracts
 
-- [The Inventory NFT Token](https://trustscan.one/address/0xD7a71796213AB860e5f261D4e2eC62767a6A4Dd4)
-- [The TRT In-Game-Token](https://trustscan.one/address/0x81aC77864c5962482cB6E743A2ddecDee8120823)
+- [The Inventory NFT Token](https://testnet.reefscan.com/contract/0x54dF41bC85dc888F537067270F1B444a9028b679)
+- [The TRT In-Game-Token](https://testnet.reefscan.com/contract/0xD31f9f0BCcf69381951e42702F2c308C964fa8Fb)
 
 ## Demo
 
-Live Website (https://trankers-trustevm.netlify.app/)
+Live Website (https://trankers-reef.netlify.app/)
 
 Youtube Video Demo
 
-[![Youtube Video](https://img.youtube.com/vi/Mps1TpiDhyg/sddefault.jpg)](https://youtu.be/Mps1TpiDhyg)
+[![Youtube Video](https://img.youtube.com/vi/4qlir6EZQTA/sddefault.jpg)](https://youtu.be/4qlir6EZQTA)
 
 
 
 ## Tech Stack
 
-**Frontend:** NEXT.JS, Unity, WebGL, web3.js
+**Frontend:** NEXT.JS, Unity, WebGL, reef.js, evm-provider.js
 
-**Backend:** Solidity, IPFS
+**Backend:** Solidity, IPFS, Reef
 ## Roadmap
 
 - [x]  Player To Earn
 - [x]  Multiple Owner Ownership
 - [ ]  Multiplayer Support like a open-world a arena
+- [ ]  Integration with Sqwid
 - [ ]  Security Enhancements/ Auditing in the Smart Contract
 - [ ]  More upgrades and abilities
 - [ ]  Improve gaming expereince
@@ -53,7 +54,7 @@ Youtube Video Demo
 Clone the project
 
 ```bash
-  git clone https://github.com/Code-Decoders/trankers-trustevm
+  git clone https://github.com/Maadhav/trankers-reef
 ```
 
 Go to the project directory
@@ -109,5 +110,5 @@ If you have any feedback or contact, please reach out to us at maadhav2001@gmail
 ## Authors
 
 - [@Maadhav](https://www.github.com/Maadhav)
-- [@kunal528](https://www.github.com/kunal528)
+- [@kunal528](https://www.github.com/pinkkuuuuu)
 
