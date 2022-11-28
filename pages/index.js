@@ -25,7 +25,7 @@ export default function Home() {
       }
     }
   `;
-  const { loading, error, data } = useQuery(GET_EVENTS);
+  const { loading, error, data, refetch } = useQuery(GET_EVENTS);
 
   const getData = async () => {
     console.log("getData");
@@ -92,6 +92,7 @@ export default function Home() {
   };
 
   const updateOwners = async (id) => {
+    await refetch();
     let events = data.evm_event.map((event) => {
       return event.data_raw;
     });
@@ -132,6 +133,7 @@ export default function Home() {
         });
       });
     }
+    window.alert("Owners updated, you might need to reload the page. Graphql is not updating the data");
   };
 
   useEffect(() => {
@@ -159,7 +161,7 @@ export default function Home() {
             height: "80vh",
           }}
         >
-          {loadPercent != 100 && !loading && (
+          {loadPercent != 100 && (
             <progress value={loadPercent} max="100"></progress>
           )}
         </span>

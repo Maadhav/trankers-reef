@@ -34,8 +34,7 @@ const Sidebar = () => {
       reefSigner.subscribeSelectedAccountSigner(async (signer) => {
         if (signer) {
           let address = await signer.getSubstrateAddress();
-          setAddress(await signer.getAddress());
-          const unsub = await signer.provider.api.query.system.account(
+          signer.provider.api.query.system.account(
             address,
             async ({ nonce, data }) => {
               setBalance(
@@ -46,6 +45,7 @@ const Sidebar = () => {
               // console.log(BigNumber.from(data.free.toString()));
             }
           );
+          setAddress(await signer.getAddress());
         }
       });
     });
@@ -106,7 +106,6 @@ const Sidebar = () => {
           </div>
         </Link>
       </div>
-      {/* <div className={styles["sidebar-balance-container"]} > */}
       <div className={styles["sidebar-balance-container"]}>
         {/* <div className={styles["sidebar-balance-container"]} onClick={()=>mint_by_owner()}> */}
         <div style={{ fontSize: "20px" }}>Balance</div>
