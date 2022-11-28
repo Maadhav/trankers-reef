@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "../styles/Warship.module.css";
 import ReactBlockies from "react-blockies";
-import BigNumber from "bignumber.js";
 import { toast } from "react-toastify";
 import { mint, mintWithToken } from "../lib/reefAdaptor";
 
