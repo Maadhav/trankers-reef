@@ -1,0 +1,31 @@
+{
+  "name": "trankers",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@openzeppelin/contracts": "^4.7.3",
+    "@reef-defi/evm-provider": "^1.0.9",
+    "@reef-defi/extension-dapp": "^1.0.15",
+    "@reef-defi/extension-inject": "^1.0.15",
+    "@reef-defi/keyring": "^7.8.2",
+    "ethers": "^5.7.2",
+    "graphql": "^16.6.0",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-blockies": "^1.4.1",
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.0.8",
+    "react-unity-webgl": "^9.0.4"
+  },
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5"
+  }
+}
