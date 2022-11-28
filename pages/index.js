@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { ethers, BigNumber } from "ethers";
 import Upgrades from "../components/Upgrades";
 import Tank from "../components/Tank";
-import { getPrices, getURI, initializeReef, web3 } from "../lib/web3Adaptor";
+import { getPrices, getURI, initializeReef, web3 } from "../lib/reefAdaptor";
 import styles from "../styles/Home.module.css";
 import contractAddress from "../lib/getContracts";
 import { useQuery, gql } from "@apollo/client";
@@ -159,7 +159,7 @@ export default function Home() {
             height: "80vh",
           }}
         >
-          {(loadPercent != 100 && !loading) && (
+          {loadPercent != 100 && !loading && (
             <progress value={loadPercent} max="100"></progress>
           )}
         </span>

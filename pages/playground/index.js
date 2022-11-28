@@ -8,7 +8,7 @@ import {
   getURI,
   mintToken,
   web3,
-} from "../../lib/web3Adaptor";
+} from "../../lib/reefAdaptor";
 import { useQuery, gql } from "@apollo/client";
 import { ethers } from "ethers";
 
@@ -21,7 +21,7 @@ const Playground = () => {
     addEventListener,
     removeEventListener,
     sendMessage,
-    initialisationError
+    initialisationError,
   } = useUnityContext({
     loaderUrl: "build/Build.loader.js",
     dataUrl: "build/Build.data",
@@ -74,14 +74,12 @@ const Playground = () => {
         id: iface.parseLog(events[i]).args["id"].toString(),
         to: iface.parseLog(events[i]).args["_to"],
       };
-    } 
+    }
     console.log(events);
     const addr = await getAddress();
     console.log(addr);
     const ids = events
-      .filter(
-        (e) => e.to.toLowerCase() == addr.toLowerCase()
-      )
+      .filter((e) => e.to.toLowerCase() == addr.toLowerCase())
       .map((e) => e.id);
     console.log(ids);
     let _ships = [],
@@ -124,7 +122,7 @@ const Playground = () => {
           <p>Loading... ({loadingPercentage}%)</p>
         </div>
       )}
-      {(!loading &&
+      {!loading && (
         <Unity
           className="unity"
           unityProvider={unityProvider}

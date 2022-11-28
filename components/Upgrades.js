@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
-import { mint, mintWithToken } from "../lib/web3Adaptor";
+import { mint, mintWithToken } from "../lib/reefAdaptor";
 import styles from "../styles/Upgrades.module.css";
 
 const Upgrades = ({ upgrade, index, updateOwner }) => {
@@ -24,12 +24,13 @@ const Upgrades = ({ upgrade, index, updateOwner }) => {
           {upgrade.name}
         </span>
       </td>
-      <td className={styles.center}>{upgrade.attributes[1]['value']}% Damage</td>
-      <td className={styles.center}>{upgrade.attributes[1]['value']}</td>
+      <td className={styles.center}>
+        {upgrade.attributes[1]["value"]}% Damage
+      </td>
+      <td className={styles.center}>{upgrade.attributes[1]["value"]}</td>
       <td className={styles["action-bar"]}>
         <div className={styles["action-button"]} onClick={handleBuyWithtNative}>
-          {(upgrade.price / 10 ** 18).toFixed(2)}{" "}
-          REEF
+          {(upgrade.price / 10 ** 18).toFixed(2)} REEF
         </div>
         <div className={styles["action-button"]} onClick={handleByWithTRT}>
           {upgrade.trt} TRT

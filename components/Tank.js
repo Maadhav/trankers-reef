@@ -3,7 +3,7 @@ import styles from "../styles/Warship.module.css";
 import ReactBlockies from "react-blockies";
 import BigNumber from "bignumber.js";
 import { toast } from "react-toastify";
-import { mint, mintWithToken } from "../lib/web3Adaptor";
+import { mint, mintWithToken } from "../lib/reefAdaptor";
 
 const Tank = ({ ship, updateOwner }) => {
   const handleBuyWithNative = async () => {
@@ -39,8 +39,7 @@ const Tank = ({ ship, updateOwner }) => {
       </div>
       <div className={styles["action-bar"]}>
         <div className={styles["action-button"]} onClick={handleBuyWithNative}>
-          {(ship.price / 10 ** 18).toFixed(2)}{" "}
-          REEF
+          {(ship.price / 10 ** 18).toFixed(2)} REEF
         </div>
         <div className={styles["action-button"]} onClick={handleByWithTRT}>
           {ship.trt} TRT

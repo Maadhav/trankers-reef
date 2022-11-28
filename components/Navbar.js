@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { initializeReef } from "../lib/web3Adaptor";
+import { initializeReef } from "../lib/reefAdaptor";
 import styles from "../styles/Navbar.module.css";
 
 const Navbar = () => {
   const [address, setAddress] = useState(null);
-  
+
   const handleClick = () => {
     if (address) {
       setAddress(null);

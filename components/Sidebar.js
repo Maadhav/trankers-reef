@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { getTokenBalance, initializeReef, mintToken } from "../lib/web3Adaptor";
+import { getTokenBalance, initializeReef, mintToken } from "../lib/reefAdaptor";
 import styles from "../styles/Sidebar.module.css";
 import { BigNumber } from "ethers";
 
@@ -107,9 +107,7 @@ const Sidebar = () => {
         </Link>
       </div>
       {/* <div className={styles["sidebar-balance-container"]} > */}
-      <div
-        className={styles["sidebar-balance-container"]}
-      >
+      <div className={styles["sidebar-balance-container"]}>
         {/* <div className={styles["sidebar-balance-container"]} onClick={()=>mint_by_owner()}> */}
         <div style={{ fontSize: "20px" }}>Balance</div>
         <div>{toFixed(balance, 3)} REEF</div>
