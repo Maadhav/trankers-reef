@@ -1,57 +1,60 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.25 <0.9.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./TrankersToken.sol";
 
-contract TrankersInventory is ERC1155, Ownable {
+contract TrankersInventory is ERC1155,Ownable{
     using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
+      Counters.Counter private _tokenIds;
 
-    mapping(uint256 => uint256) private _tokenPrices;
-    mapping(uint256 => uint256) private _tokenPricesInSPT;
+       address token;
 
-    address token;
+     constructor(address _token) ERC1155("ipfs://bafybeihha7rjxcddj7u5wnysjafsmz2bnmvxnnblukeueokxg5immhrkxi/{id}.json"){
+         token = _token;
+     }
 
-    constructor(address token_) 
-        ERC1155(
-            "ipfs://bafybeihha7rjxcddj7u5wnysjafsmz2bnmvxnnblukeueokxg5immhrkxi/{id}.json"
-        )
-    {
-        token = token_;
+    function updateToken(address _token)public onlyOwner{
+        token = _token;
     }
 
-    function updateToken(address token_) public onlyOwner {
-        token = token_;
-    }
-
-    function mint(uint256 price, uint256 priceInSPT) public onlyOwner {
-        require(msg.sender != address(0), "to address is invalid");
-        require(price > 0, "amount is invalid");
-        _tokenIds.increment();
-        _tokenPrices[_tokenIds.current()] = price;
-        _tokenPricesInSPT[_tokenIds.current()] = priceInSPT;
-        _mint(msg.sender, _tokenIds.current(), 1, "");
-    }
-
-    function mint(uint256 token_id) public payable {
-        require(msg.sender != address(0), "to address is invalid");
-        require(token_id > 0, "token id is invalid");
-        require(balanceOf(msg.sender, token_id) == 0, "already minted");
-        if (_tokenPrices[token_id] == msg.value) {
-            _mint(msg.sender, token_id, 1, "");
-        } else {
-            TrankersToken(token).burnFrom(
-                msg.sender,
-                _tokenPricesInSPT[token_id]
-            );
-            _mint(msg.sender, token_id, 1, "");
+        struct Inventory {
+        uint tokenId;
+        uint price;
+        uint256 tokeninTRT;
         }
+
+     mapping(uint => Inventory) private idToInventory;
+
+    function mint(uint256 price,uint256 tokeninTRT) public payable onlyOwner {
+        _tokenIds.increment();
+         uint256 tokenId = _tokenIds.current();
+         _mint(msg.sender, tokenId,1,"");
+
+         idToInventory[tokenId] = Inventory(
+          tokenId,
+          price,
+          tokeninTRT
+      );
     }
 
-    function getPrice(uint256 token_id) public view returns (uint256, uint256) {
-        return (_tokenPrices[token_id], _tokenPricesInSPT[token_id]);
+    function mint(uint256 tokenId) public payable {
+    require(balanceOf(msg.sender,tokenId) == 0,"already minted");
+     if(msg.value != idToInventory[tokenId].price){
+    TrankersToken(token).burn(msg.sender,idToInventory[tokenId].tokeninTRT);
+
+ _mint(msg.sender,tokenId,1,"");
+        }
+    else{
+    _mint(msg.sender, tokenId,1,"");
     }
+    }
+
+    function getPrice(uint256 tokenId) public view returns(uint256,uint256){
+        return(idToInventory[tokenId].price,idToInventory[tokenId].tokeninTRT);
+
+    }
+
 }
